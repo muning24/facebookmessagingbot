@@ -23,7 +23,7 @@ option.add_argument("--disable-extensions")
 
 # Pass the argument 1 to allow and 2 to block
 option.add_experimental_option(
-    "prefs", {"profile.default_content_setting_values.notifications": 5}
+    "prefs", {"profile.default_content_setting_values.notifications": 10}
 )
 
 # 4. INSTALL WEB DRIVER
@@ -42,17 +42,22 @@ sleep(3)
 
 # 7 FIND FRIEND
 driver.find_element(By.XPATH,
+
+                    # full xpath of input element
                     '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div[1]/div/div/div/div/div[2]/div[1]/div/div/div/div/label/input').send_keys(
     friend)
 
+sleep(5)
 action = ActionChains(driver)
 action.click(driver.find_element(By.XPATH,
-                                 '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[2]/div/div/div[1]/div[1]/div/div[1]/ul/li[1]/ul/li[2]'))
+                    # full xpath of li element with id of friend
+                    '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[2]/div/div/div[1]/div[1]/div/div[1]/ul/li[1]/ul/li[2]'))
 action.perform()
-sleep(2)
+sleep(5)
 
 # 8 SEND MESSAGE
 driver.find_element(By.XPATH,
+                    # full xpath of p element in message box
                     '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div[2]/div/div/div/div/div/div/div[2]/div/div/div[2]/div/div/div[4]/div[2]/div/div/div[1]/p').send_keys(
     message)
 driver.find_element(By.XPATH,

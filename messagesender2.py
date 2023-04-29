@@ -35,18 +35,11 @@ driver.find_element(By.XPATH, '//*[@id="pass"]').send_keys(password)
 driver.find_element(By.XPATH, '//*[@id="pass"]').send_keys(Keys.RETURN)
 sleep(5)
 
-# 6 GO TO MESSAGES
+# 6 GO TO FRIENDS LIST
 driver.get('https://www.facebook.com/friends/list')
 sleep(3)
 
-# 6. GET FRIEND LIST
-# Scroll down - You can increase or decrease the size of loop according to your friend list
-i=0
-while i<3:
-    driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
-    i=i+1
-    print(i)
-    sleep(3)
+# 7. GET FRIEND LIST
 
 friend_list = driver.find_elements(By.XPATH, '//div[@class="x1qjc9v5 x1q0q8m5 x1qhh985 xu3j5b3 xcfux6l x26u7qi xm0m39n x13fuv20 x972fbf x9f619 x78zum5 x1r8uery xdt5ytf x1iyjqo2 xs83m0k x1qughib xat24cr x11i5rnm x1mh8g0r xdj266r x2lwn1j xeuugli x4uap5 xkhd6sd xz9dl7a xsag5q8 x1n2onr6 x1ja2u2z"]')
 friends = []
@@ -55,27 +48,27 @@ for friend in friend_list:
 
 print(friends)
 
-# 6 GO TO MESSAGES
+# 8. GO TO MESSAGES
 driver.get('https://www.facebook.com/messages/')
 sleep(3)
 
-# 7 SEND MESSAGE
+# 9. SEND MESSAGE
 for friend in friends:
     driver.find_element(By.XPATH,
                             '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div[1]/div/div/div/div/div[2]/div[1]/div/div/div/div/label/input').send_keys(
         friend)
-
+    sleep(5)
     action = ActionChains(driver)
     action.click(driver.find_element(By.XPATH, '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[2]/div/div/div[1]/div[1]/div/div[1]/ul/li[1]/ul/li[2]'))
     action.perform()
 
-    sleep(2)
+    sleep(5)
     driver.find_element(By.XPATH,
                         '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div[2]/div/div/div/div/div/div/div[2]/div/div/div[2]/div/div/div[4]/div[2]/div/div/div[1]/p').send_keys(
         message)
     driver.find_element(By.XPATH,
                         '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div[2]/div/div/div/div/div/div/div[2]/div/div/div[2]/div/div/div[4]/div[2]/div/div/div[1]/p').send_keys(
         Keys.RETURN)
-    sleep(2)
+    sleep(5)
     driver.get('https://www.facebook.com/messages/')
     sleep(2)
